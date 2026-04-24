@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yiğitcan Özer — Creative Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0d0d0d;--sf:#141414;--sf2:#1a1a1a;--sf3:#222;
+  --brd:rgba(255,255,255,.07);--brd2:rgba(255,255,255,.13);
+  --tx:#f5f0e8;--tx2:rgba(245,240,232,.5);--tx3:rgba(245,240,232,.25);
+  --ac:#ff6b35;--ac2:#ff9060;--acbg:rgba(255,107,53,.1);--acg:rgba(255,107,53,.2);
+  --grn:#4ade80;--nav:68px;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+body::before{content:'';position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.025;pointer-events:none;z-index:9999;}
+
+/* CURSOR */
+body{cursor:none;}
+#cur{width:9px;height:9px;background:var(--ac);border-radius:50%;position:fixed;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:width .2s,height .2s;}
+#curR{width:36px;height:36px;border:1.5px solid rgba(255,107,53,.3);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s;}
+body.hov #curR{width:58px;height:58px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;height:var(--nav);display:flex;align-items:center;justify-content:space-between;padding:0 60px;background:rgba(13,13,13,.9);backdrop-filter:blur(24px);border-bottom:1px solid var(--brd);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:3px;color:var(--tx);text-decoration:none;}
+.nav-logo em{color:var(--ac);font-style:normal;}
+.nav-links{display:flex;gap:4px;list-style:none;}
+.nav-links a{color:var(--tx2);text-decoration:none;font-size:13px;padding:8px 18px;border-radius:100px;transition:all .2s;cursor:none;}
+.nav-links a:hover,.nav-links a.on{color:var(--tx);background:var(--sf2);}
+.nav-right{display:flex;align-items:center;gap:16px;}
+.nav-avail{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--tx2);}
+.adot{width:7px;height:7px;border-radius:50%;background:var(--grn);box-shadow:0 0 8px rgba(74,222,128,.6);animation:pg 2.5s ease-in-out infinite;}
+@keyframes pg{0%,100%{box-shadow:0 0 8px rgba(74,222,128,.6)}50%{box-shadow:0 0 2px rgba(74,222,128,.2)}}
+.nav-cta{padding:9px 22px;background:var(--ac);color:white;font-size:12px;font-weight:500;text-decoration:none;border-radius:100px;cursor:none;transition:all .2s;}
+.nav-cta:hover{background:var(--ac2);}
+
+/* HERO */
+.hero{min-height:100vh;padding-top:var(--nav);display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;}
+.hero-glow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,53,.12) 0%,transparent 70%);top:-200px;right:-150px;pointer-events:none;}
+.hero-glow2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,53,.06) 0%,transparent 70%);bottom:100px;left:10%;pointer-events:none;}
+.hero-l{padding:80px 70px 80px 60px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--brd);position:relative;z-index:2;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ac);font-weight:400;margin-bottom:28px;}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--ac);}
+.hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,8vw,116px);line-height:.92;letter-spacing:1px;margin-bottom:24px;}
+.hero-h1 .dim{color:var(--tx2);}
+.hero-h1 .aclr{color:var(--ac);}
+.hero-sub{font-size:17px;font-weight:300;color:var(--tx2);line-height:1.7;max-width:480px;margin-bottom:48px;padding-left:20px;border-left:2px solid rgba(255,107,53,.2);}
+.hero-sub strong{color:var(--tx);font-weight:500;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.btn{padding:14px 32px;border-radius:100px;font-size:13px;font-weight:500;letter-spacing:.3px;text-decoration:none;cursor:none;transition:all .22s;display:inline-block;border:none;font-family:'DM Sans',sans-serif;}
+.btn-ac{background:var(--ac);color:white;box-shadow:0 4px 24px var(--acg);}
+.btn-ac:hover{background:var(--ac2);transform:translateY(-2px);}
+.btn-ol{background:transparent;color:var(--tx);border:1px solid var(--brd2);}
+.btn-ol:hover{border-color:var(--tx2);transform:translateY(-2px);}
+.hero-r{padding:80px 60px 80px 70px;display:flex;flex-direction:column;justify-content:center;gap:24px;position:relative;z-index:2;}
+.hero-profile{display:flex;align-items:center;gap:20px;padding:24px;background:var(--sf);border:1px solid var(--brd);border-radius:20px;}
+.ha{width:72px;height:72px;border-radius:50%;flex-shrink:0;background:conic-gradient(var(--ac) 0deg,#ff9060 90deg,#ffb347 180deg,var(--ac) 360deg);padding:2.5px;animation:spin 10s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ha-in{width:100%;height:100%;border-radius:50%;background:var(--sf);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:var(--ac);}
+.hp-name{font-size:17px;font-weight:700;letter-spacing:-.3px;margin-bottom:3px;}
+.hp-title{font-size:13px;color:var(--tx2);font-weight:300;margin-bottom:10px;}
+.ptags{display:flex;flex-wrap:wrap;gap:6px;}
+.ptag{font-size:10px;font-weight:500;padding:4px 10px;border-radius:100px;letter-spacing:.3px;}
+.ptag-a{background:var(--acbg);color:var(--ac);border:1px solid rgba(255,107,53,.2);}
+.ptag-n{background:var(--sf2);color:var(--tx2);border:1px solid var(--brd);}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--brd);border:1px solid var(--brd);border-radius:16px;overflow:hidden;}
+.hst{padding:22px 16px;background:var(--sf);text-align:center;transition:background .2s;}
+.hst:hover{background:var(--sf2);}
+.hst-n{font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:-.5px;line-height:1;color:var(--ac);margin-bottom:6px;}
+.hst-n sup{font-size:.55em;}
+.hst-l{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--tx3);}
+.hero-tools{display:flex;flex-wrap:wrap;gap:8px;padding:20px;background:var(--sf);border:1px solid var(--brd);border-radius:16px;}
+.tch{font-size:11px;padding:6px 14px;border-radius:100px;background:var(--sf2);color:var(--tx2);border:1px solid var(--brd);transition:all .2s;}
+.tch:hover{border-color:var(--acbg);color:var(--ac);}
+
+/* TICKER */
+.ticker{overflow:hidden;padding:16px 0;background:var(--sf);border-top:1px solid var(--brd);border-bottom:1px solid var(--brd);}
+.ticker-track{display:flex;animation:tk 35s linear infinite;white-space:nowrap;}
+.ti{display:inline-flex;align-items:center;gap:48px;padding:0 48px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--tx3);font-weight:300;}
+.tdot{color:var(--ac);font-size:7px;}
+@keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+section{padding:100px 60px;}
+.stag{display:inline-flex;align-items:center;gap:12px;font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(--ac);font-weight:400;margin-bottom:16px;}
+.stag::before{content:'';width:22px;height:1px;background:var(--ac);}
+.sh2{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,5vw,72px);letter-spacing:1px;line-height:1;margin-bottom:16px;}
+.sh2 span{color:var(--ac);}
+
+/* FILTER */
+.filter-bar{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;flex-wrap:wrap;gap:16px;}
+.fp-wrap{display:flex;gap:8px;flex-wrap:wrap;}
+.fp{padding:8px 18px;border-radius:100px;font-size:12px;border:1px solid var(--brd2);background:transparent;color:var(--tx2);cursor:none;font-family:'DM Sans',sans-serif;transition:all .2s;}
+.fp:hover{border-color:var(--tx2);color:var(--tx);}
+.fp.on{background:var(--ac);color:white;border-color:var(--ac);}
+
+/* GRID — tüm kartlar dikey */
+.ig-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;align-items:start;}
+.gc{position:relative;overflow:hidden;border-radius:14px;cursor:none;background:var(--sf2);transition:transform .3s,box-shadow .3s;}
+/* 1080x1350 — 4:5 dikey (Sıra 1) */
+.gc.port{aspect-ratio:4/5;}
+/* 1080x1920 — 9:16 tam dikey (Sıra 2) */
+.gc.land{aspect-ratio:9/16;}
+/* 2 sütun — geniş kartlar */
+.gc.land-wide{grid-column:span 2;aspect-ratio:9/16;}
+.gc.port-wide{grid-column:span 2;aspect-ratio:4/5;}
+.gc:hover{transform:scale(1.012);box-shadow:0 24px 64px rgba(0,0,0,.55);z-index:10;}
+.gc-bg{width:100%;height:100%;position:absolute;inset:0;overflow:hidden;}
+
+/* WHATSAPP BTN */
+.wa-btn{
+  display:flex;align-items:center;gap:8px;
+  padding:9px 20px;
+  background:#25d366;
+  color:white;
+  font-size:12px;font-weight:600;letter-spacing:.3px;
+  text-decoration:none;border-radius:100px;
+  transition:all .22s;cursor:none;
+  box-shadow:0 4px 16px rgba(37,211,102,.3);
+}
+.wa-btn:hover{background:#1fbe5a;transform:translateY(-1px);box-shadow:0 6px 20px rgba(37,211,102,.4);}
+.wa-btn svg{flex-shrink:0;}
+.gc-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.3) 50%,transparent 100%);padding:20px;display:flex;flex-direction:column;justify-content:flex-end;opacity:0;transition:opacity .3s;}
+.gc:hover .gc-ov{opacity:1;}
+.gc-cat{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--ac2);margin-bottom:6px;}
+.gc-title{font-size:17px;font-weight:600;line-height:1.25;margin-bottom:5px;}
+.gc-year{font-size:11px;color:var(--tx2);}
+.gc-strip{position:absolute;bottom:0;left:0;right:0;padding:14px 16px;background:linear-gradient(to top,rgba(0,0,0,.78),transparent);}
+.gc-st{font-size:13px;font-weight:500;line-height:1.2;}
+.gc-sc{font-size:10px;color:rgba(255,255,255,.45);margin-top:2px;letter-spacing:.5px;text-transform:uppercase;}
+.gc-badge{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.65);backdrop-filter:blur(8px);border-radius:8px;padding:4px 9px;font-size:10px;font-weight:600;}
+.gf1{background:linear-gradient(135deg,#180800,#3d1200,#7a2800,#ff6b35);}
+.gf2{background:linear-gradient(160deg,#060d00,#102000,#204000,#4ade80);}
+.gf3{background:linear-gradient(225deg,#00020d,#000a22,#001540,#3b82f6);}
+.gf4{background:linear-gradient(135deg,#0d0010,#200025,#3d0048,#c084fc);}
+.gf5{background:linear-gradient(180deg,#0a0800,#1a1400,#2d2200,#eab308);}
+.gf6{background:linear-gradient(315deg,#00070a,#001520,#002030,#22d3ee);}
+.gf7{background:linear-gradient(135deg,#100010,#240024,#3a0042,#e879f9);}
+.gf8{background:linear-gradient(200deg,#150300,#2d0600,#480a00,#f97316);}
+
+/* SERVICES */
+.svc-section{background:var(--sf);border-top:1px solid var(--brd);}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--brd);border:1px solid var(--brd);border-radius:20px;overflow:hidden;margin-top:60px;}
+.svc-card{padding:44px 32px;background:var(--sf);position:relative;overflow:hidden;transition:background .3s;}
+.svc-card:hover{background:var(--sf2);}
+.svc-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--ac),transparent);transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.svc-card:hover::after{transform:scaleX(1);}
+.svc-n{font-family:'Bebas Neue',sans-serif;font-size:54px;color:rgba(255,107,53,.12);line-height:1;margin-bottom:20px;}
+.svc-name{font-size:20px;font-weight:600;letter-spacing:-.3px;margin-bottom:12px;}
+.svc-desc{font-size:13px;font-weight:300;color:var(--tx2);line-height:1.75;margin-bottom:20px;}
+.svc-price{font-size:22px;font-weight:700;color:var(--ac);font-family:'Bebas Neue',sans-serif;letter-spacing:.5px;}
+.svc-price span{font-size:13px;color:var(--tx2);font-family:'DM Sans',sans-serif;font-weight:300;}
+.svc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+.svt{font-size:10px;padding:4px 10px;border-radius:100px;background:var(--sf2);color:var(--tx3);border:1px solid var(--brd);}
+
+/* ABOUT */
+.ab-wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-top:60px;}
+.ab-l h3{font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:1;margin-bottom:28px;letter-spacing:1px;}
+.ab-l h3 span{color:var(--ac);}
+.ab-l p{font-size:16px;font-weight:300;color:var(--tx2);line-height:1.85;margin-bottom:18px;}
+.ab-l p strong{color:var(--tx);font-weight:500;}
+.sk-list{display:flex;flex-direction:column;gap:16px;margin-bottom:36px;}
+.sk-top{display:flex;justify-content:space-between;margin-bottom:7px;font-size:13px;}
+.sk-pct{color:var(--ac);font-weight:500;}
+.sk-track{height:2px;background:var(--sf3);border-radius:2px;overflow:hidden;}
+.sk-fill{height:2px;background:linear-gradient(90deg,var(--ac),var(--ac2));border-radius:2px;transform-origin:left;transform:scaleX(0);transition:transform 1.2s cubic-bezier(.4,0,.2,1);}
+.sk-fill.anim{transform:scaleX(1);}
+.tools-wrap{display:flex;flex-wrap:wrap;gap:8px;padding:24px;background:var(--sf);border:1px solid var(--brd);border-radius:16px;}
+
+/* PROCESS */
+.proc-section{background:var(--sf);border-top:1px solid var(--brd);}
+.proc-row{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--brd);border:1px solid var(--brd);border-radius:20px;overflow:hidden;margin-top:60px;}
+.ps{padding:40px 28px;background:var(--sf);transition:background .25s;}
+.ps:hover{background:var(--sf2);}
+.ps-n{font-family:'Bebas Neue',sans-serif;font-size:52px;color:rgba(255,107,53,.15);line-height:1;margin-bottom:18px;}
+.ps-title{font-size:15px;font-weight:600;letter-spacing:-.2px;margin-bottom:10px;}
+.ps-desc{font-size:13px;font-weight:300;color:var(--tx2);line-height:1.7;}
+
+/* CONTACT */
+.ct-wrap{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--brd);border-radius:24px;overflow:hidden;margin-top:60px;}
+.ct-l{padding:60px;background:var(--sf);border-right:1px solid var(--brd);}
+.ct-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,4vw,62px);line-height:1;letter-spacing:1px;margin-bottom:20px;}
+.ct-h span{color:var(--ac);}
+.ct-p{font-size:15px;font-weight:300;color:var(--tx2);line-height:1.8;max-width:380px;margin-bottom:36px;}
+.ct-r{padding:60px;background:var(--sf2);display:flex;flex-direction:column;justify-content:center;gap:4px;}
+.cl-row{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--brd);text-decoration:none;color:var(--tx);cursor:none;transition:all .2s;}
+.cl-row:first-child{border-top:1px solid var(--brd);}
+.cl-row:hover{padding-left:10px;color:var(--ac);}
+.cl-left{display:flex;align-items:center;gap:14px;}
+.cl-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;}
+.cl-lbl{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--tx3);margin-bottom:2px;}
+.cl-val{font-size:15px;font-weight:400;}
+.cl-arr{font-size:18px;color:var(--tx3);transition:all .2s;}
+.cl-row:hover .cl-arr{color:var(--ac);transform:translate(3px,-3px);}
+
+/* FOOTER */
+footer{padding:28px 60px;border-top:1px solid var(--brd);display:flex;justify-content:space-between;align-items:center;}
+footer p{font-size:12px;color:var(--tx3);font-weight:300;}
+.foot-r{font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--tx3);letter-spacing:2px;}
+
+/* MODAL */
+#modal-bg{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.82);backdrop-filter:blur(16px);opacity:0;pointer-events:none;transition:opacity .3s;}
+#modal-bg.open{opacity:1;pointer-events:all;}
+#modal-box{position:fixed;top:50%;left:50%;z-index:2001;transform:translate(-50%,-46%);width:min(700px,92vw);background:var(--sf);border:1px solid var(--brd2);border-radius:24px;overflow:hidden;opacity:0;transition:opacity .3s,transform .3s;max-height:90vh;overflow-y:auto;}
+#modal-box.open{opacity:1;transform:translate(-50%,-50%);}
+.modal-vis{height:320px;position:relative;overflow:hidden;}
+.modal-body{padding:32px 36px 36px;}
+.modal-tag{font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--ac);margin-bottom:10px;}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:44px;letter-spacing:.5px;line-height:1;margin-bottom:14px;}
+.modal-desc{font-size:15px;font-weight:300;color:var(--tx2);line-height:1.75;margin-bottom:22px;}
+.modal-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.mchip{font-size:11px;padding:5px 14px;border-radius:100px;background:var(--acbg);color:var(--ac);border:1px solid rgba(255,107,53,.2);}
+.modal-close{position:absolute;top:16px;right:16px;z-index:10;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.55);border:1px solid var(--brd2);display:flex;align-items:center;justify-content:center;cursor:none;font-size:16px;color:var(--tx2);transition:all .2s;}
+.modal-close:hover{background:rgba(255,107,53,.2);color:var(--ac);}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+.rv.on{opacity:1;transform:none;}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+
+/* RESPONSIVE */
+@media(max-width:1200px){
+  .ig-grid{grid-template-columns:repeat(3,1fr);}
+  .gc.land-wide{grid-column:span 2;}
+  .gc.port-wide{grid-column:span 2;}
+  .svc-grid{grid-template-columns:repeat(2,1fr);}
+  .proc-row{grid-template-columns:repeat(3,1fr);}
+}
+@media(max-width:900px){
+  nav{padding:0 24px;}
+  .nav-links{display:none;}
+  .hero{grid-template-columns:1fr;}
+  .hero-l{padding:40px 24px;border-right:none;border-bottom:1px solid var(--brd);}
+  .hero-r{padding:32px 24px;}
+  .hero-stats{grid-template-columns:repeat(2,1fr);}
+  section{padding:70px 24px;}
+  .ig-grid{grid-template-columns:repeat(2,1fr);}
+  .gc.land-wide,.gc.port-wide{grid-column:span 2;}
+  .svc-grid{grid-template-columns:1fr;}
+  .ab-wrap{grid-template-columns:1fr;}
+  .proc-row{grid-template-columns:1fr 1fr;}
+  .ct-wrap{grid-template-columns:1fr;}
+  .ct-l{border-right:none;border-bottom:1px solid var(--brd);}
+  footer{flex-direction:column;gap:10px;text-align:center;}
+  .wa-btn span{display:none;}
+  .wa-btn{padding:9px 14px;}
+}
+@media(max-width:560px){
+  .ig-grid{grid-template-columns:repeat(2,1fr);}
+  .gc.land-wide,.gc.port-wide{grid-column:span 2;}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="curR"></div>
+
+<!-- MODAL -->
+<div id="modal-bg" onclick="closeModal()"></div>
+<div id="modal-box">
+  <div class="modal-vis" id="modal-vis"></div>
+  <div class="modal-close" onclick="closeModal()">✕</div>
+  <div class="modal-body">
+    <div class="modal-tag" id="modal-tag"></div>
+    <div class="modal-title" id="modal-title"></div>
+    <p class="modal-desc" id="modal-desc"></p>
+    <div class="modal-chips" id="modal-chips"></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" style="display:flex;align-items:center;text-decoration:none;cursor:none;" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <video autoplay muted loop playsinline
+      style="height:48px;width:auto;object-fit:contain;display:block;">
+      <source src="logo.webm" type="video/webm">
+      <source src="logo.mp4" type="video/mp4">
+    </video>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#portfolio" class="on">Portfolio</a></li>
+    <li><a href="#services">Hizmetler</a></li>
+    <li><a href="#about">Hakkımda</a></li>
+    <li><a href="#contact">İletişim</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-avail"><div class="adot"></div>Müsait</div>
+    <a href="https://wa.me/905382858828" target="_blank" class="wa-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.852L.054 23.454a.5.5 0 00.492.592l5.857-1.534A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.807 9.807 0 01-5.031-1.384l-.361-.214-3.737.979.997-3.645-.235-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
+      </svg>
+      <span>WhatsApp</span>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-l">
+    <div class="hero-eyebrow rv">Grafik Tasarımcı · İstanbul</div>
+    <h1 class="hero-h1 rv d1">
+      <span class="dim">YİĞİTCAN</span><br>ÖZER<br>
+      <span class="aclr">DESİGNER.</span>
+    </h1>
+    <p class="hero-sub rv d2">Markaları <strong>güçlü görsel kimliğe</strong> dönüştürüyorum. Grafik tasarım, sosyal medya, video animasyon — fikrinizi kalıcı bir deneyime taşıyorum.</p>
+    <div class="hero-btns rv d3">
+      <a href="#portfolio" class="btn btn-ac">Çalışmalarımı Gör ↓</a>
+      <a href="#contact" class="btn btn-ol">Benimle Çalış</a>
+    </div>
+  </div>
+  <div class="hero-r">
+    <div class="hero-profile rv d1">
+      <div class="ha"><div class="ha-in">YÖ</div></div>
+      <div>
+        <div class="hp-name">Yiğitcan Özer</div>
+        <div class="hp-title">Creative Designer & Motion Artist</div>
+        <div class="ptags">
+          <span class="ptag ptag-a">Grafik Tasarım</span>
+          <span class="ptag ptag-a">Sosyal Medya</span>
+          <span class="ptag ptag-n">Video & Animasyon</span>
+          <span class="ptag ptag-n">Marka Kimliği</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-stats rv d2">
+      <div class="hst"><div class="hst-n">5<sup>+</sup></div><div class="hst-l">Yıl</div></div>
+      <div class="hst"><div class="hst-n">80<sup>+</sup></div><div class="hst-l">Proje</div></div>
+      <div class="hst"><div class="hst-n">40<sup>+</sup></div><div class="hst-l">Müşteri</div></div>
+      <div class="hst"><div class="hst-n">12<sup>M</sup></div><div class="hst-l">Erişim</div></div>
+    </div>
+    <div class="hero-tools rv d3">
+      <span class="tch">Illustrator</span><span class="tch">Photoshop</span>
+      <span class="tch">After Effects</span><span class="tch">Premiere</span>
+      <span class="tch">Canva</span><span class="tch">InDesign</span>
+      <span class="tch">Aİ</span><span class="tch">Meta Bussines</span>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker"><div class="ticker-track">
+  <span class="ti">Grafik Tasarım <span class="tdot">◆</span></span>
+  <span class="ti">Marka Kimliği <span class="tdot">◆</span></span>
+  <span class="ti">Sosyal Medya Yönetimi <span class="tdot">◆</span></span>
+  <span class="ti">Video Animasyon <span class="tdot">◆</span></span>
+  <span class="ti">Motion Design <span class="tdot">◆</span></span>
+  <span class="ti">Logo Tasarımı <span class="tdot">◆</span></span>
+  <span class="ti">Ambalaj Tasarımı <span class="tdot">◆</span></span>
+  <span class="ti">Meta Bussines <span class="tdot">◆</span></span>
+  <span class="ti">Grafik Tasarım <span class="tdot">◆</span></span>
+  <span class="ti">Yapay Zeka <span class="tdot">◆</span></span>
+  <span class="ti">Sosyal Medya Yönetimi <span class="tdot">◆</span></span>
+  <span class="ti">Video Animasyon <span class="tdot">◆</span></span>
+  <span class="ti">Sunum Tasarımı <span class="tdot">◆</span></span>
+  <span class="ti">Logo Tasarımı <span class="tdot">◆</span></span>
+  <span class="ti">Ai ierik Üretimi <span class="tdot">◆</span></span>
+  <span class="ti">İçerik Üretimi <span class="tdot">◆</span></span>
+</div></div>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="filter-bar">
+    <div>
+      <div class="stag rv">Portfolio</div>
+      <h2 class="sh2 rv d1">SEÇİLİ <span>ÇALIŞMALAR</span></h2>
+    </div>
+    <div class="fp-wrap rv d2">
+      <button class="fp on" onclick="filterGrid('all',this)">Tümü</button>
+    </div>
+  </div>
+
+  <div class="ig-grid" id="proj-grid">
+
+    <!-- ═══ SIRA 1 — 1080×1350 (4:5) — 4 kart ═══ -->
+    <div class="gc port rv" data-cat="brand" onclick="openModal(0)">
+     <div class="gc-bg" style="background:#000;">
+        <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;">
+          <source src="peugeot.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="gc-strip"><div class="gc-st">Peugeot Deniz.</div><div class="gc-sc">Araç Tanıtım Videosu.2026</div></div>
+      <div class="gc-ov"><div class="gc-cat">Ai İçerik</div><div class="gc-title">Peugeot Deniz.</div><div class="gc-year">Ai İçerik Araç Tanıtımı</div></div>
+      <div class="gc-badge">🏆 Featured</div>
+    </div>
+
+    <div class="gc port rv d1" data-cat="social" onclick="openModal(1)">
+      <div class="gc-bg" style="background:#8b3a0f;">
+        <img src="POST__40_.png" alt="Pumpkin Spice" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="gc-strip"><div class="gc-st">Pumpkin Spice Baharat</div><div class="gc-sc">Sosyal Medya · 2024</div></div>
+      <div class="gc-ov"><div class="gc-cat">Sosyal Medya</div><div class="gc-title">Pumpkin Spice Baharat</div><div class="gc-year">Ürün Görseli · Instagram Post · 2024</div></div>
+    </div>
+
+    <div class="gc port rv d2" data-cat="video" onclick="openModal(2)">
+      <div class="gc-bg" style="background:#000;">
+        <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;">
+          <source src="papatyasuyu.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="gc-strip"><div class="gc-st">Papatya Suyu</div><div class="gc-sc">İnstagram Reels Video · 2024</div></div>
+      <div class="gc-ov"><div class="gc-cat">İnstagram Reels Video</div><div class="gc-title">Papatya Suyu</div><div class="gc-year">Ürün Tanıtım Videosu · 2024</div></div>
+      <div class="gc-badge">▶ Video</div>
+    </div>
+
+    <div class="gc port rv d3" data-cat="motion" onclick="openModal(3)">
+      <div class="gc-bg" style="background:#098305;"></div>
+      <div class="gc-bg gf4"><video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;">
+          <source src="canlandırıcısaçbakım.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="gc-strip"><div class="gc-st">Arifoğlu Baharat</div><div class="gc-sc">Reels İçin Dikkat Çeken Animasyonlar</div></div>
+      <div class="gc-ov"><div class="gc-cat">Motion Design</div><div class="gc-title">Arifoğlu Baharat</div><div class="gc-year">Reels İçin Dikkat Çeken Animasyonlar 2026</div></div>
+      <div class="gc-badge">🎬 Motion</div>
+    </div>
+
+    <!-- ═══ SIRA 2 — 1920×1080 (16:9) — 4 kart ═══ -->
+    <div class="gc land rv" data-cat="brand" onclick="openModal(4)">
+      <div class="gc-bg" style="background:#0d0583;"></div>
+      <div class="gc-bg gf4"><video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;">
+          <source src="hiltob.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="gc-strip"><div class="gc-st">DoubleTree by Hilton </div><div class="gc-sc">Reels İçin Dikkat Çeken Animasyonlar· 2024<</div></div>
+      <div class="gc-ov"><div class="gc-cat">Reels İçin Dikkat Çeken Animasyonlar<</div><div class="gc-title">DoubleTree by Hilton</div><div class="gc-year">Reels İçin Dikkat Çeken Animasyonlar</div></div>
+    </div>
+
+    <div class="gc land rv d1" data-cat="print" onclick="openModal(5)">
+      <div class="gc-bg" style="background:#0d0583;"></div>
+      <div class="gc-bg gf4"><video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;">
+          <source src="skoda.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="gc-strip"><div class="gc-st">Skoda Çakıroglu 2023</div><div class="gc-sc">Video Animasyon · 2023</div></div>
+      <div class="gc-ov"><div class="gc-cat">Baskı Tasarım</div><div class="gc-title">Skoda Çakıroglu 2023</div><div class="gc-year">Reklam Animasyonları · 2023</div></div>
+    </div>
+
+    <div class="gc land rv d2" data-cat="social" onclick="openModal(6)">
+   <div class="gc-bg" style="background:#0d0583;"></div>
+      <div class="gc-bg gf4"><video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;">
+          <source src="elma.mp4" type="video/mp4">
+      </div>
+      <div class="gc-strip"><div class="gc-st">Arifoğlu Baharat</div><div class="gc-sc">instagram reels video</div></div>
+      <div class="gc-ov"><div class="gc-cat">Reels İçin Dikkat Çeken Animasyonlar</div><div class="gc-title">Arifoğlu Baharat</div><div class="gc-year">Reels İçin Dikkat Çeken Animasyonlar</div></div>
+      <div class="gc-badge">🔥 12M+</div>
+    </div>
+
+    <div class="gc land rv d3" data-cat="motion" onclick="openModal(7)">
+   <div class="gc-bg" style="background:#8b3a0f;">
+        <img src="ananas.png" alt="Pumpkin Spice" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      </div>
+      </div>
+      <div class="gc-ov"><div class="gc-cat">Motion Design</div><div class="gc-title">Logo Reveal Collection</div><div class="gc-year">5 Marka · Intro/Outro · 2023</div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="svc-section" id="services">
+  <div class="stag rv">Hizmetler</div>
+  <h2 class="sh2 rv d1">NELER <span>YAPIYORUM</span></h2>
+  <div class="svc-grid">
+    <div class="svc-card rv d1">
+      <div class="svc-n">01</div>
+      <div class="svc-name">Grafik Tasarım</div>
+      <p class="svc-desc">Logo, kurumsal kimlik, ambalaj ve dijital tasarım. Markanı rakiplerinden ayıran özgün, güçlü görseller.</p>
+      <div class="svc-tags"><span class="svt">Logo</span><span class="svt">Kimlik</span><span class="svt">Ambalaj</span><span class="svt">Afiş</span></div>
+    </div>
+    <div class="svc-card rv d2">
+      <div class="svc-n">02</div>
+      <div class="svc-name">Sosyal Medya Yönetimi</div>
+      <p class="svc-desc">Strateji, içerik üretimi, feed tasarımı ve topluluk yönetimi. Instagram, TikTok, LinkedIn için uçtan uca hizmet.</p>
+      <div class="svc-tags"><span class="svt">Strateji</span><span class="svt">Feed Tasarım</span><span class="svt">Reels</span><span class="svt">Analitik</span></div>
+    </div>
+    <div class="svc-card rv d3">
+      <div class="svc-n">03</div>
+      <div class="svc-name">Video & Film</div>
+      <p class="svc-desc">Reklam filmleri, ürün videoları ve kurumsal tanıtımlar. Çekim, kurgu, renk düzeltme tek çatı altında.</p>
+      <div class="svc-tags"><span class="svt">Reklam</span><span class="svt">Ürün Video</span><span class="svt">Kurgu</span><span class="svt">Color Grade</span></div>
+    </div>
+    <div class="svc-card rv d4">
+      <div class="svc-n">04</div>
+      <div class="svc-name">Video Animasyon</div>
+      <p class="svc-desc">2D animasyon, motion graphics, logo reveal ve explainer video. Markanı harekete geçiriyorum.</p>
+      <div class="svc-tags"><span class="svt">2D Anim</span><span class="svt">Motion</span><span class="svt">Explainer</span><span class="svt">Logo Reveal</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="stag rv">Hakkımda</div>
+  <h2 class="sh2 rv d1">BİRAZ <span>KENDİMDEN</span></h2>
+  <div class="ab-wrap">
+    <div class="ab-l rv d1">
+      <h3>TASARIM<br>BİR <span>DİL</span>DİR.</h3>
+      <p>Merhaba! Ben Yiğitcan. <strong>5 yılı aşkın deneyimimle</strong> markaların görsel kimliğini şekillendiriyorum. Her proje benim için bir hikaye anlatma fırsatı.</p>
+      <p>Grafik tasarımdan video animasyona, sosyal medya stratejisinden motion graphics'e — <strong>tüm yaratıcı süreçleri tek çatı altında</strong> yönetiyorum.</p>
+      <p>İşlevsellik ile estetik arasındaki dengeyi titizlikle kurarak <strong>kalıcı ve etkili sonuçlar</strong> ortaya koyuyorum.</p>
+    </div>
+    <div class="rv d2">
+      <div class="sk-list">
+        <div><div class="sk-top"><span>Marka Kimliği & Logo</span><span class="sk-pct">95%</span></div><div class="sk-track"><div class="sk-fill"></div></div></div>
+        <div><div class="sk-top"><span>Grafik Tasarım</span><span class="sk-pct">92%</span></div><div class="sk-track"><div class="sk-fill"></div></div></div>
+        <div><div class="sk-top"><span>Sosyal Medya Stratejisi</span><span class="sk-pct">88%</span></div><div class="sk-track"><div class="sk-fill"></div></div></div>
+        <div><div class="sk-top"><span>Video & Animasyon</span><span class="sk-pct">84%</span></div><div class="sk-track"><div class="sk-fill"></div></div></div>
+        <div><div class="sk-top"><span>Motion Design</span><span class="sk-pct">80%</span></div><div class="sk-track"><div class="sk-fill"></div></div></div>
+      </div>
+      <div class="tools-wrap">
+        <span class="tch">Illustrator</span><span class="tch">Photoshop</span><span class="tch">InDesign</span>
+        <span class="tch">After Effects</span><span class="tch">Premiere Pro</span><span class="tch">Figma</span>
+        <span class="tch">DaVinci Resolve</span><span class="tch">Framer</span><span class="tch">Blender</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="proc-section">
+  <div class="stag rv">Süreç</div>
+  <h2 class="sh2 rv d1">NASIL <span>ÇALIŞIYORUM</span></h2>
+  <div class="proc-row">
+    <div class="ps rv d1"><div class="ps-n">01</div><div class="ps-title">Keşif</div><p class="ps-desc">Markanı, hedef kitlen ve rakiplerini derinlemesine analiz ediyorum. Nereye gitmemiz gerektiğini birlikte belirliyoruz.</p></div>
+    <div class="ps rv d2"><div class="ps-n">02</div><div class="ps-title">Strateji</div><p class="ps-desc">Görsel strateji, yaratıcı konsept ve yol haritası. Fikri netleştirip sağlam bir plan üzerine inşa ediyorum.</p></div>
+    <div class="ps rv d3"><div class="ps-n">03</div><div class="ps-title">Üretim</div><p class="ps-desc">Konsepti hayata geçiriyorum. Her detay, her piksel, her kare özenle işleniyor.</p></div>
+    <div class="ps rv d4"><div class="ps-n">04</div><div class="ps-title">Revizyon</div><p class="ps-desc">Geri bildirimlerini entegre ediyorum. Birlikte mükemmelleştiriyoruz — sınırsız revizyon.</p></div>
+    <div class="ps rv d5"><div class="ps-n">05</div><div class="ps-title">Teslim</div><p class="ps-desc">Tüm formatlarda hazır, organize ve eksiksiz dosyalar. Anında kullanıma hazır.</p></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="stag rv">İletişim</div>
+  <h2 class="sh2 rv d1">İLETİŞİME <span>GEÇ</span></h2>
+  <div class="ct-wrap rv">
+    <div class="ct-l">
+      <h3 class="ct-h">BİRLİKTE<br><span>YARATALIM.</span></h3>
+      <p class="ct-p">Yeni bir projen mi var? Haydi konuşalım. Küçük bir merhaba bile yeterli — sana özel bir teklif hazırlarım.</p>
+      <a href="mailto:yigitcan@ozer.design" class="btn btn-ac">E-posta Gönder →</a>
+    </div>
+    <div class="ct-r">
+      <a href="mailto:yigitcan@ozer.design" class="cl-row">
+        <div class="cl-left"><div class="cl-icon" style="background:rgba(255,107,53,.1)">📧</div><div><div class="cl-lbl">E-posta</div><div class="cl-val">ozeryigitc@gmail.com</div></div></div>
+        <div class="cl-arr">↗</div>
+      </a>
+      <a href="https://instagram.com" target="_blank" class="cl-row">
+        <div class="cl-left"><div class="cl-icon" style="background:rgba(225,48,108,.1)">📸</div><div><div class="cl-lbl">Instagram</div><div class="cl-val">@yigitcannnozer</div></div></div>
+        <div class="cl-arr">↗</div>
+      </a>
+      <a href="https://behance.net" target="_blank" class="cl-row">
+        <div class="cl-left"><div class="cl-icon" style="background:rgba(23,105,255,.1)">🎨</div><div><div class="cl-lbl">Behance</div><div class="cl-val">be.net/yigitcanozer</div></div></div>
+        <div class="cl-arr">↗</div>
+      </a>
+      <a href="www.linkedin.com/in/yiğitcan-özer-a5a77ab5" target="_blank" class="cl-row">
+        <div class="cl-left"><div class="cl-icon" style="background:rgba(0,119,181,.1)">💼</div><div><div class="cl-lbl">LinkedIn</div><div class="cl-val">Yiğitcan Özer</div></div></div>
+        <div class="cl-arr">↗</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Yiğitcan Özer · Tüm hakları saklıdır · İstanbul, Türkiye</p>
+  <div class="foot-r">MADE WITH ♥</div>
+</footer>
+
+<script>
+const PROJECTS=[
+  {cat:'Video Ai',title:'Peugeot Deniz.',desc:'Peugeot 408 video çalışmasında; sinematik kurgu ve dinamik geçişleri, efektlerde yapay zekâ desteğiyle güçlendirdim.',tags:['Motion','Video','Yapay Zeka','Tanıtım'],gf:'gf1'},
+  {cat:'Sosyal Medya Tasarımı',title:'Arifoğlu Baharat',desc:'Balkabağı karışım baharatı  Instagram ürün görseli tasarımı. Sıcak tonlar, ürün fotoğrafçılığı kompozisyonu ve güçlü tipografi ile çarpıcı bir sosyal medya postu.',tags:['Instagram Post','Ürün Görseli','Sosyal Medya','Tipografi'],gf:'gf2',img:'POST__40_.png'},
+  {cat:'Video Aİ',title:'Arifoğlu Baharat',desc:'Doğal ürün markası için hazırlanan ürün tanıtım videosu. Yapay Zeka ile Karekter oluşturma kurgu ve seslendirme, renk düzeltme ve profesyonel kurgu ile ürünün hikayesini anlatıyor.',tags:['Video Prodüksiyon','Ürün Filmi','Color Grading','Kurgu'],gf:'gf3',vid:'papatyasuyu.mp4'},
+  {cat:'Motion Design',title:'Arifoğlu Baharat',desc:'Canlandırıcı Saç Bakım Yağı  için sosyal medya reklam animasyonları.',tags:['Motion Graphics','Reklam','TikTok','Instagram'],gf:'gf4'},
+  {cat:'Motion Design',title:'DoubleTree by Hilton',desc:'Cookie ürünü için hazırladığım tanıtım animasyon videosu.',tags:['Video','Animasyon','Sosyal Medya',],gf:'gf5'},
+  {cat:'Motion Design',title:'Skoda Çakıroglu',desc:'Škoda modellerini tanıtan video çalışması.',tags:['After Effect','Video ','Animasyon','Sosyal Medya'],gf:'gf6'},
+  {cat:'Motion Design',title:'Arifoğlu Baharat',desc:'Elme Sirkesi ve Alıç Sirkesi İçin Ürün Tanıtım Videosu. 12M+ organik erişim.',tags:['İnstagram','Twitter','İçerik Planı','Analitik'],gf:'gf7'},
+  {cat:'Sosyal Medya Tasarımı',title:'Arifoğlu Baharat',desc:'İnstagram ürün görseli tasarımı',tags:['Adobe Photshop','İnstagram','Ürün Tanıtımı','4K'],gf:'gf8'},
+];
+
+// MODAL
+function openModal(i){
+  const p=PROJECTS[i];
+  document.getElementById('modal-tag').textContent=p.cat;
+  document.getElementById('modal-title').textContent=p.title;
+  document.getElementById('modal-desc').textContent=p.desc;
+  const vis=document.getElementById('modal-vis');
+  if(p.vid){
+    vis.innerHTML=`<video autoplay muted loop playsinline controls style="width:100%;height:100%;object-fit:cover;display:block;"><source src="${p.vid}" type="video/mp4"></video>`;
+  } else if(p.img){
+    vis.innerHTML=`<img src="${p.img}" style="width:100%;height:100%;object-fit:cover;display:block;" alt="${p.title}">`;
+  } else {
+    vis.innerHTML=`<div class="${p.gf}" style="width:100%;height:100%"></div>`;
+  }
+  document.getElementById('modal-chips').innerHTML=p.tags.map(t=>`<span class="mchip">${t}</span>`).join('');
+  document.getElementById('modal-bg').classList.add('open');
+  document.getElementById('modal-box').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('modal-bg').classList.remove('open');
+  document.getElementById('modal-box').classList.remove('open');
+  document.body.style.overflow='';
+  // Stop any playing video
+  const v=document.querySelector('#modal-vis video');
+  if(v){ v.pause(); v.src=''; }
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+
+// FILTER
+function filterGrid(cat,btn){
+  document.querySelectorAll('.fp').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.gc').forEach(c=>{
+    const show=cat==='all'||c.dataset.cat===cat;
+    c.style.opacity=show?'1':'0.2';
+    c.style.transform=show?'':'scale(0.96)';
+    c.style.transition='opacity .35s,transform .35s';
+    c.style.pointerEvents=show?'':'none';
+  });
+}
+
+// CURSOR
+const cur=document.getElementById('cur'),curR=document.getElementById('curR');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+(function loop(){ rx+=(mx-rx)*.12; ry+=(my-ry)*.12; curR.style.left=rx+'px'; curR.style.top=ry+'px'; requestAnimationFrame(loop); })();
+document.querySelectorAll('a,button,.gc,.svc-card,.ps,.hst').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
+});
+
+// REVEAL
+const obs=new IntersectionObserver(e=>e.forEach(x=>{ if(x.isIntersecting) x.target.classList.add('on'); }),{threshold:.07,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+// Skill bars
+const skObs=new IntersectionObserver(e=>e.forEach(x=>{ if(x.isIntersecting) x.target.querySelectorAll('.sk-fill').forEach((f,i)=>{ setTimeout(()=>f.classList.add('anim'),i*80); }); }),{threshold:.3});
+document.querySelectorAll('.sk-list').forEach(g=>skObs.observe(g));
+
+// Nav active
+document.querySelectorAll('section[id]').forEach(s=>{
+  new IntersectionObserver(e=>e.forEach(x=>{ if(x.isIntersecting) document.querySelectorAll('.nav-links a').forEach(a=>{ a.classList.remove('on'); if(a.getAttribute('href')==='#'+x.target.id) a.classList.add('on'); }); }),{threshold:.4}).observe(s);
+});
+
+// Hero stagger
+setTimeout(()=>{ document.querySelectorAll('.hero .rv').forEach((el,i)=>setTimeout(()=>el.classList.add('on'),i*120)); },80);
+</script>
+</body>
+</html>
